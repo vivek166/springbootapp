@@ -1,40 +1,52 @@
 package com.synerzip.app.model;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection = "users")
 public class User {
 
 	@Id
-	private int id;
-	private String name;
-	@Indexed(unique = true) 
+	private ObjectId id;
+	private String firstName;
+	private String lastName;
+	@Indexed(unique = true)
 	private String email;
 	private String mobile;
 	private String address;
+	private String price;
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email
-				+ ", mobile=" + mobile + ", address=" + address + "]";
-	}
-
-	public int getId() {
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", email=" + email + ", mobile=" + mobile
+				+ ", address=" + address + ", price=" + price + "]";
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getEmail() {
@@ -61,16 +73,27 @@ public class User {
 		this.address = address;
 	}
 
-	public User(int id, String name, String email, String mobile, String address) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.mobile = mobile;
-		this.address = address;
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
 	}
 
 	public User() {
+	}
+
+	public User(ObjectId id, String firstName, String lastName, String email,
+			String mobile, String address, String price) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobile = mobile;
+		this.address = address;
+		this.price = price;
 	}
 
 }

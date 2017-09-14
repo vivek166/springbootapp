@@ -1,6 +1,7 @@
 package com.synerzip.app.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,5 +50,10 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.GET, params = { "email" }, produces = MediaType.APPLICATION_JSON_VALUE)
 	public User getByEmail(@RequestParam("email") String email) {
 		return service.getByEmail(email);
+	}
+	
+	@RequestMapping(value="/mapreduce", method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String map(){
+		return service.doMapReduce();
 	}
 }
